@@ -1,0 +1,51 @@
+
+<input type="text" name="searchTerm" placeholder="Search.."  class="search" [formControl]="searchTerm">
+<div class="parent">
+  <div class="card" *ngFor="let card of out | filter:searchTerm.value">
+    <div class="image">
+      <img src='https://cdn.pixabay.com/photo/2015/04/19/08/32/marguerite-729510__480.jpg' class='img' height="200px">
+    </div>
+
+    <div class="body">
+
+      <h2>{{card.name}}</h2>
+      <p> {{card.description}}</p>
+
+    </div>
+
+    </div>
+</div>
+<div *ngIf="out.length>1; else loggedOut">
+  <button (click)="prevPage()" class="previous">&laquo; Previous</button>
+  <button (click)="nextPage()" class="next">Next &raquo;</button>
+
+
+<div style="overflow-x:auto;">
+  <table>
+    <tr class="hide">
+      <th>Image </th>
+      <th>Name </th>
+      <th>Description</th>
+      <th>Last edited</th>
+    </tr>
+    <tr *ngFor="let card of out">
+      <td><img src='https://cdn.pixabay.com/photo/2015/04/19/08/32/marguerite-729510__480.jpg'  class='sm-img' height="200px"></td>
+      <td>{{card.name}}</td>
+      <td>{{card.description}}</td>
+      <td>{{card.dateLastEdited | date}}</td>
+    </tr>
+  </table>
+</div>
+
+</div>
+<ng-template #loggedOut>
+<h2>
+  No more card to display!
+</h2>
+</ng-template>
+
+
+
+
+
+
